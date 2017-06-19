@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="he">
 <head>
     <meta charset="UTF-8">
@@ -18,8 +18,16 @@
                     <ul class="left hide-on-med-and-down">
                         <li><a href="#">עזרה</a></li>
                         <li><a href="#">יצירת טופס</a></li>
+                      <li><a class='dropdown-button' href='#' data-activates='user-dropdown'>משתמש</a></li>
                     </ul>
                 </div>
+                  <!-- Dropdown Structure -->
+                  <ul id='user-dropdown' class='dropdown-content'>
+                    <li><a data-user="sason">ששון</a></li>
+                    <li><a data-user="gilgur">גילגור</a></li>
+                    <li><a data-user="ronit">רונית</a></li>
+                    <li><a data-user="kabatia">קבטיה</a></li>
+                  </ul>
             </nav>
         </header>
 
@@ -47,12 +55,20 @@
                 </a>
             </div>
             
+            <div class="bkal-form-card driver-form card light-blue darken-3">
+                <a href="#">
+                    <div class="card-content white-text">                        
+                        <span class="card-title">מדבקה לרכב</span>
+                    </div>
+                </a>
+            </div>
+            
         </div>
 
         <div class="wait-for-aprove-container" style="direction:rtl;">
             <div class="wait-for-aprove-sub-container">
 
-                <h5 color:" class="waited_forms_header">טפסים שממתינים לאישורך <span id="amountOfWaitToApprove"></span></h5>
+                <h5 class="waited_forms_header">טפסים שממתינים לאישורך <span id="amountOfWaitToApprove"></span></h5>
 
                 <ul class="collapsible wait-for-aprove-list" data-collapsible="accordion" id="wait-for-aprove-list">
                   

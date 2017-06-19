@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
 
     var user = "gilgur";
 
@@ -76,3 +76,7 @@
 function send_form_details_for_server() {
     console.log("here");
 }
+
+$('#user-dropdown li a').on('click', function(e){
+    localStorage.setItem('user', $(e.target).data('user'));
+});
