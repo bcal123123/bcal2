@@ -18,9 +18,8 @@
 .wait-for-aprove-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin: 20px auto;
 }
-
 
 .wait-for-aprove-sub-container {
     width: 47%;
@@ -29,7 +28,6 @@
 .wait-for-aprove-list {
     padding: 0px;
 }
-
 
 .wait-for-me-container {
     display: flex;
@@ -57,7 +55,7 @@
     vertical-align: center;
 }
 
-.card.bkal-form-card{
+.card.bkal-form-card {
     height: 15em;
     width: 15em;
     display: flex;
@@ -65,65 +63,64 @@
     align-items: flex-end;
     overflow: hidden;
     margin: 2.5em 20px;
-    
+
     border: 2px solid white;
     border-radius: 100%;
-    
+
     transition: 0.5s ease;
     cursor: pointer;
-    
+
     background-repeat: no-repeat;
     background-position: center;
     background-size: 200%;
 }
 
-.card.bkal-form-card:hover{
+.card.bkal-form-card:hover {
     border-width: 5px;
 }
 
-
-.card.bkal-form-card a{
+.card.bkal-form-card a {
     width: 100%;
 }
 
-.card.bkal-form-card .card-content{
+.card.bkal-form-card .card-content {
     width: 100%;
     padding: 0;
     margin-bottom: 24px;
     transition: 0.5s ease;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-.card.bkal-form-card:hover .card-content{
+.card.bkal-form-card:hover .card-content {
     background-color: rgba(100, 100, 100, 0.5);
 }
 
-.card.bkal-form-card .card-title{
+.card.bkal-form-card .card-title {
     align-self: flex-end;
     text-align: center;
-    width:100%;
+    width: 100%;
     margin: 0;
 }
 
-.bkal-form-card.hul-form{
+.bkal-form-card.hul-form {
     background-image: url(img/hul.jpg);
 }
 
-.bkal-form-card.trip-form{
+.bkal-form-card.trip-form {
     background-image: url(img/trip.jpg);
 }
 
-.bkal-form-card.sick-form{
+.bkal-form-card.sick-form {
     background-image: url(img/sick.jpg);
 }
 
-.bkal-form-card.driver-form{
+.bkal-form-card.driver-form {
     background-image: url(img/driver.jpg);
 }
 
-.bkal-forms-wrapper{
+.bkal-forms-wrapper {
     height: 20em;
     background-color: rgba(106, 106, 106, 0.28);
-        background-image: url('img/shredded.jpg');
+    background-image: url('img/shredded.jpg');
 
 }
