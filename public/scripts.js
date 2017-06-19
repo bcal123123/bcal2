@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    var user = "gilgur";
+    var user = "soldier1";
 
 
     /* wait to aprove section */
