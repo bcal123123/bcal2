@@ -12,67 +12,113 @@
 
 <div id="wrapper">
     <header>
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!"></a></li>
-        </ul>
         <nav class="light-blue lighten-1">
             <div class="nav-wrapper">
                 <a href="#!" class="brand-logo">B-Kal</a>
-                <ul class="right hide-on-med-and-down">
+                <ul class="left hide-on-med-and-down">
+                    <li><a href="#">עזרה</a></li>
                     <li><a href="#">יצירת טופס</a></li>
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">ברוך הבא משתמש<i
-                            class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <div class="row">
-        <div class="col m2">
-            <div class="card light-blue darken-3" style="text-align:center;">
+    <div id="popular">
+        <div class="card light-blue darken-3">
+            <a href="#">
+                <div class="card-content white-text">
+                    <span class="card-title">טופס טיולים</span>
+                    <p>
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div class="card-action blue darken-4">
+                    מלא טופס
+                </div>
+            </a>
+        </div>
+
+        <div class="card light-blue darken-3">
+            <a href="#modal1">
                 <div class="card-content white-text">
                     <span class="card-title">טופס חו"ל</span>
                     <p>
                         <i class="fa fa-plane" aria-hidden="true"></i>
                     </p>
                 </div>
-                <div class="card-action" style="background: #01579b">
-                    <a href="#">מלא טופס חול</a>
+                <div class="card-action blue darken-4">
+                    מלא טופס
                 </div>
-            </div>
+            </a>
         </div>
 
-        <div class="col m2" style="direction: rtl;">
-            <div class="card light-blue darken-3" style="text-align:center;">
-                <div class="card-content white-text">
-                    <span class="card-title">טופס טיולים</span>
-                    <p>
-                        <i class="fa fa-sign-out" style="font-size:82px" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="card-action" style="background: #01579b">
-                    <a href="#" style="color:#fff; margin-left:20px">מלא טופס טיולים</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col m2" style="direction: rtl;">
-            <div class="card light-blue darken-3" style="text-align:center;">
+        <div class="card light-blue darken-3">
+            <a href="#">
                 <div class="card-content white-text">
                     <span class="card-title">חייל חדש</span>
                     <p>
-                        <i class="fa fa-user-plus" style="font-size:82px" aria-hidden="true"></i>
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
                     </p>
                 </div>
-                <div class="card-action" style="background: #01579b">
-                    <a href="#" style="color:#fff; margin-left:20px">מלא טופס חייל חדש</a>
+                <div class="card-action blue darken-4">
+                    מלא טופס
                 </div>
-            </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Out of the contry modal -->
+    <div id="modal1" class="modal" style="direction:rtl;">
+        <div class="modal-content">
+            <form>
+                <h4>הרצת טופס חול</h4>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name" class="hebrew-fix">שם משפחה</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="first_name" type="text" class="validate">
+                        <label for="first_name" class="hebrew-fix">שם פרטי</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="date_back" type="text" class="validate">
+                        <label for="date_back" class="hebrew-fix">תאריך חזרה</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="date_fly" type="text" class="validate">
+                        <label for="date_fly" class="hebrew-fix">תאריך טיסה</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="destination" type="text" class="validate">
+                        <label for="destination" class="hebrew-fix">יעד</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="private_number" type="text" class="validate">
+                        <label for="private_number" class="hebrew-fix">מספר אישי</label>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer center-align modal-footer-container">
+            <a href="#!" class="modal-action modal-close waves-effect waves-light btn">הרץ טופס</a>
         </div>
     </div>
 </div>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script>
+        $(document).ready(function () {
+            $('#modal1').modal();
+        });
+</script>
 </body>
 </html>
