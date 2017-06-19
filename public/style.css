@@ -27,3 +27,12 @@
 .card a:visited {
     color: #fff;
 }
+
+.hebrew-fix {
+    padding-right: 20px;
+}
+
+.modal-footer-container {
+    display: flex;
+    justify-content: center;
+}
