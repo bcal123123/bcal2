@@ -34,8 +34,9 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-    var user = "soldier1";
-
+    var user = localStorage['user'];
+    if (localStorage['user-display'])
+        $('#user-dropdown-activator').html(localStorage['user-display']);
 
     /* wait to aprove section */
 
@@ -131,4 +132,6 @@ $('#run-form').submit(function(ev) {
 
 $('#user-dropdown li a').on('click', function(e){
     localStorage.setItem('user', $(e.target).data('user'));
+    localStorage.setItem('user-display', $(e.target).html());
+    location.reload();
 });

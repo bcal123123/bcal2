@@ -98,6 +98,10 @@
     background-image: url(img/sick.jpg);
 }
 
+.bkal-form-card.driver-form{
+    background-image: url(img/driver.jpg);
+}
+
 .bkal-forms-wrapper{
     height: 20em;
     background-color: rgba(106, 106, 106, 0.28);
