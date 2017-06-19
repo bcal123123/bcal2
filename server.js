@@ -79,12 +79,18 @@ app.post('/tofes/:userid', function(req, res) {
 app.get('/tofes/getTofesByApprover/:user', function(req, res) {
 	var approver = req.params.user;
 	
-	var tofeses = _.filter(db.tofes, function(tf){
-		var stage = _.first(tf.stages , {done == false});
-		if(stage.approver == approver)
-			return stage;
-	} );
-	res.send(tofeses);
+	var tofesRes=[];
+	db.tofes.forEach(function(tofes) {
+		var firstUnDoneStage = _.find(tofes.stages, function(stage) { 
+			return stage.done == false;
+		});
+
+		console.log(firstUnDoneStage );
+		if(firstUnDoneStage  && firstUnDoneStage.approver == approver){
+			tofesRes.push(tofes);
+		}
+	});
+	res.send(tofesRes);
 	res.status(200);
 	
 });
