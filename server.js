@@ -202,7 +202,7 @@ function createTofesHulStages(user) {
           "type": "video",
           "name": "תדרוך",
           "data": {
-            "link": "sadasd.youtube.com"
+            "link": "https://www.youtube.com/embed/Y_OLslE3bX8"
           },
           "done": false,
           "approver": user
