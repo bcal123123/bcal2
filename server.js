@@ -79,7 +79,9 @@ app.post('/tofes/:userid', function(req, res) {
 app.get('/tofes/getTofesByApprover/:user', function(req, res) {
 	var approver = req.params.user;
 	
-	let tofeses = _.filter(db.tofes, tf => _.find(tf.stages , {approver: approver}))
+	var tofeses = _.filter(db.tofes, function(tf){
+		return _.find(tf.stages , {approver: approver});
+	} )
 	res.send(tofeses);
 	res.status(200);
 	
