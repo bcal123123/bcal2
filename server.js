@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var _ = require('lodash')
 
 var port = process.env.port || 8200;
 
@@ -74,6 +75,16 @@ app.post('/tofes/:userid', function(req, res) {
 	res.send(create(user, body));
 	res.status(200);
 });
+
+app.get('/tofes/getTofesByApprover/:user', function(req, res) {
+	var approver = req.params.user;
+	
+	let tofeses = _.filter(db.tofes, tf => _.find(tf.stages , {approver: approver}))
+	res.send(tofeses);
+	res.status(200);
+	
+});
+
 
 // method:post, url:'/tofes/:type/:userid', data:{ name:'d1', lname:'aviram', sdate:'11/12/13', ndate:'12/14/14', dest:'Thai', pNumber: '123123'}
 app.post('/tofes/:type/:userid', function(req, res) {
@@ -239,24 +250,7 @@ function createTofesHulStages(user) {
 		return stages;
 }
 
-
-var db = 
-{
-  "tofes": []
-};
-
-
-var t1 = create('soldier1',  { name:'stam', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
-t1.stages[1].done;
-t1.stages[2].done;
-
-
-var t2 = create('soldier2',  { name:'proper', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
-t2.stages[1].done = true;
-t2.stages[2].done = true;
-t2.stages[3].done = true;
-
-
+var db = { "tofes": [] };
 
 function create(user, data, type) {
 	var newTofes = {
@@ -285,6 +279,15 @@ function create(user, data, type) {
 }
  
 
+var t1 = create('soldier1',  { name:'stam', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
+t1.stages[1].done;
+t1.stages[2].done;
+
+var t2 = create('soldier2',  { name:'proper', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
+t2.stages[1].done = true;
+t2.stages[2].done = true;
+t2.stages[3].done = true;
+
 
 createNewTofesType('hatz', [{type:'input', data: {fields :[{'fieldName':'pNumber'}]}, approver:"{user}"}]);
 create('ofir', {'pNumber':'123123'} ,'hatz');
@@ -293,4 +296,3 @@ create('soldier1', {'pNumber':'123123'} ,'hatz');
 
 
 app.listen(port);
-
