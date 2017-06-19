@@ -1,6 +1,19 @@
+#wrapper header {
+    direction: rtl;
+}
+
 .row .card .card-content p i {
     font-size: 82px;
 }
 
-.row .card .card-action {
+.row .card {
+    text-align: center;
+}
+
+.row .card a {
+    color: #fff;
+}
+
+.row .card a:visited {
+    color: #fff;
 }
