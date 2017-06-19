@@ -1,7 +1,42 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
+    if (localStorage["user"] == null) {
+        localStorage["user"] = "soldier1";
+    }
 
-    var user = "soldier1";
+    $.get("/tofesesByUser/" + localStorage["user"], function (tofeses) {
+        var elements = [];
+        
+        tofeses.forEach(function (tofes) {
+            var stages = "";
+            tofes["stages"].forEach(function (stage) {
+                var isDone = "";
 
+                if (stage["done"]) {
+                    isDone = "completed";
+                }
+
+                stages += "<li class='" + isDone + "'><span class='bubble'></span>" + stage["name"] + "</li>";
+            });
+
+            var element = "<li><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
+                tofes["name"] +
+                "</div><div class='collapsible-body'>" +
+                "<ul class='progress-indicator'>" + stages + "</ul></div></li>";
+
+            elements.push(element);
+        });
+
+        elements.forEach(function (element) {
+            $("#my-forms").append(element);
+        });
+    });
+});
+
+$(document).ready(function () {
+
+    var user = localStorage['user'];
+    if (localStorage['user-display'])
+        $('#user-dropdown-activator').html(localStorage['user-display']);
 
     /* wait to aprove section */
 
@@ -131,17 +166,23 @@
 
 
 $('#run-form').submit(function(ev) {
-	var tofes = {
-	type: "חול",
-	data: {
-		name: $('#first_name')[0].value,
-	    lname: $('#last_name')[0].value,
-		edate: $('#date_back')[0].value,
-		sdate: $('#date_fly')[0].value,
-		dest: $('#destination')[0].value,
-		pNumber: $('#private_number')[0].value
-	}};
-	
-	$.post('/runtofes/soldier1', tofes);
+    var tofes = {
+        type: "חול",
+        data: {
+            name: $('#first_name')[0].value,
+            lname: $('#last_name')[0].value,
+            edate: $('#date_back')[0].value,
+            sdate: $('#date_fly')[0].value,
+            dest: $('#destination')[0].value,
+            pNumber: $('#private_number')[0].value
+        }};
 
+    $.post('/runtofes/soldier1', tofes);
+
+});
+
+$('#user-dropdown li a').on('click', function(e){
+    localStorage.setItem('user', $(e.target).data('user'));
+    localStorage.setItem('user-display', $(e.target).html());
+    location.reload();
 });
