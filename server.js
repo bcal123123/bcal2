@@ -80,8 +80,10 @@ app.get('/tofes/getTofesByApprover/:user', function(req, res) {
 	var approver = req.params.user;
 	
 	var tofeses = _.filter(db.tofes, function(tf){
-		return _.find(tf.stages , {approver: approver});
-	} )
+		var stage = _.first(tf.stages , {done == false});
+		if(stage.approver == approver)
+			return stage;
+	} );
 	res.send(tofeses);
 	res.status(200);
 	
