@@ -35,6 +35,8 @@ function getTofesById(id) {
 app.get('/tofesesByUser/:user', function(req, res) {
 	var user = req.params.user;
 	
+	console.log('GET: /tofesesByUser/' + user);
+	
 	var resdata = [];
 	db.tofes.forEach(function(tofes){ 
 		if(tofes.creator == user) {
@@ -54,9 +56,12 @@ app.get('/allTofeses', function(req, res) {
 
 app.get('/approve/:tofesid/:stageid', function(req, res) {
 	var stageid = req.params.stageid;
+	var tofesid = req.params.tofesid;
+	
+	console.log('GET: /approve/' + tofesid, stageid);
 	
 	var resStage; 
-	var tofes = getTofesById(req.params.tofesid);
+	var tofes = getTofesById(tofesid);
 	tofes.stages.forEach(function(stage) {
 		if(stage.id == stageid) {
 			stage.done = true;
@@ -74,6 +79,7 @@ app.post('/tofes/:userid', function(req, res) {
 	var user = req.params.userid;
 	var body = req.body; // may body.data
 	
+	console.log('POST: /tofes/' + user);
 	
 	res.send(create(user, body));
 	res.status(200);
@@ -81,6 +87,8 @@ app.post('/tofes/:userid', function(req, res) {
 
 app.get('/tofes/getTofesByApprover/:user', function(req, res) {
 	var approver = req.params.user;
+	
+	console.log('GET: /tofes/getTofesByApprover/' + approver);
 	
 	var tofesRes=[];
 	db.tofes.forEach(function(tofes) {
@@ -103,6 +111,9 @@ app.post('/runtofes/:userid', function(req, res) {
 	var user = req.params.userid;	
 	var type = req.body.type;
 	var data = req.body.data; // may body.data
+	
+	console.log('POST: /runtofes/' + user + ' type=' + type + ' data=' + data.name);
+	
 	
 	res.send(create(user, data, type));
 	res.status(200);
