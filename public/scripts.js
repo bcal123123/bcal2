@@ -74,6 +74,57 @@
     }
 
     /* end of wait to aprove section */
+
+
+
+    /* wait to me section */
+
+    $.get("/tofes/gettofesbyapprover/" + user, function (data) {
+        updateAllNeedToMe(data);
+    });
+
+    $(document).on('click', '.waitToMe', function (item) {
+        var tofesid = $(this).data('tofesid');
+        var stageid = $(this).data('stageid');
+
+        $.get("/approve/" + tofesid + "/" + stageid, function (data) {
+            Materialize.toast('הטופס אושר בהצלחה', 1000, '', function () {
+                location.reload();
+            });
+        });
+    });
+
+    function updateAllNeedToMe(data) {
+
+        for (var i = 0; i < data.length; i++) {
+
+            if (data[i].creator != user) {
+                continue;
+            }
+
+            $('#amountOfWaitToMe').html('(' + data.length + ')');
+
+            $('#noToMeLabel').hide();
+
+            var stages = data[i].stages;
+            var fields = stages[0].data.fields;
+
+            var f = "qqqq";
+
+            for (var j = 0; j < stages.length; j++) {
+                var item = stages[j];
+                if (item.done == false) {
+                    console.log(item);
+                    var headline = "טופס זה ממתין לאישורך. פרטים מלאים:<br/> " + f;
+                    $("#wait-for-me-list").append("<li><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>טופס " + data[i].name + ", של " + data[i].creator + "</div><div class='collapsible-body' style='padding:0px;padding-right:30px'><p>" + headline + "</p><center><button class='waitToMe waves-effect waves-light btn' data-tofesid='" + data[i].id + "' data-stageid='" + item.id + "'>אשר</button> &nbsp <a class='waves-effect waves-light btn'>דחה</a><br/><br/></center></div></li>");
+                    break;
+                }
+            }
+        }
+
+    }
+
+    /* end of wait to me section */
 });
 
 

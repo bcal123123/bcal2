@@ -26,6 +26,21 @@
     padding: 0px;
 }
 
+
+.wait-for-me-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.wait-for-me-sub-container {
+    width: 47%;
+}
+
+.wait-for-me-list {
+    padding: 0px;
+}
+
 .wait-for-aprove-icon {
     float: right !important;
     margin-right: -5px !important;
