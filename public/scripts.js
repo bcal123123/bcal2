@@ -126,7 +126,7 @@ $('#run-form').submit(function(ev) {
             pNumber: $('#private_number')[0].value
         }};
 
-    $.post('/runtofes/soldier1', tofes);
+    $.post('/runtofes/' + localStorage['user'], tofes);
 
 });
 
