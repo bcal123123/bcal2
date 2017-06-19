@@ -31,15 +31,15 @@ function getTofesById(id) {
 app.get('/tofesesByUser/:user', function(req, res) {
 	var user = req.params.user;
 	
-	var res = [];
+	var resdata = [];
 	db.tofes.forEach(function(tofes){ 
 		if(tofes.creator == user) {
-			res.push(tofes);
+			resdata.push(tofes);
 		}
 			
 	});
 	
-	res.send(res);
+	res.send(resdata);
 	res.status(200);	
 });
 
