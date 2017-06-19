@@ -213,13 +213,13 @@ function createTofesHulStages(user) {
           "name": "מבחן",
           "data": {
             "test": [{
-                  "q": "a?",
+                  "q": "האם מותר לדבר בחול על היחידה?",
                   "a": [
-                    "1",
-                    "2",
-                    "3"
+                    "כן",
+					"לא",
+					"תלוי איך היא נראית"
                   ],
-                  "expected": "4"
+                  "expected": "לא"
             }]
             
           },
