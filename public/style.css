@@ -19,7 +19,13 @@
 .card {
     text-align: center;
 }
+.waited_forms_header{
+    direction:rtl;
+}
 
+.collapsible {
+    direction:rtl;
+}
 .card a {
     color: #fff;
 }
@@ -35,4 +41,25 @@
 .modal-footer-container {
     display: flex;
     justify-content: center;
+}
+
+.wait-for-aprove-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+.wait-for-aprove-sub-container {
+    width: 47%;
+}
+
+.wait-for-aprove-list {
+    padding: 0px;
+}
+
+.wait-for-aprove-icon {
+    float: right !important;
+    margin-right: -5px !important;
+    margin-left: 5px;
 }
