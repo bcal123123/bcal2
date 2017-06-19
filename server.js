@@ -289,14 +289,17 @@ function create(user, data, type) {
 }
  
 
-var t1 = create('soldier1',  { name:'stam', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
-t1.stages[1].done;
-t1.stages[2].done;
+var t1 = create('soldier1',  { name:'soldier1', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
+t1.stages[1].done = true;
+t1.stages[2].done = true;
+t1.stages[3].done = true;
 
-var t2 = create('soldier2',  { name:'proper', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
+var t2 = create('soldier2',  { name:'soldier2', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
 t2.stages[1].done = true;
 t2.stages[2].done = true;
 t2.stages[3].done = true;
+t2.stages[4].done = true;
+t2.stages[5].done = true;
 
 
 createNewTofesType('hatz', [{type:'input', data: {fields :[{'fieldName':'pNumber'}]}, approver:"{user}"}]);
