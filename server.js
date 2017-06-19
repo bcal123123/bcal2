@@ -2,10 +2,13 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var _ = require('lodash')
+var bodyParser = require('body-parser');
 
 var port = process.env.port || 8200;
 
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/tofesById/:id', function(req, res) {
 	var id = req.params.id;
@@ -97,13 +100,12 @@ app.get('/tofes/getTofesByApprover/:user', function(req, res) {
 
 
 // method:post, url:'/tofes/:type/:userid', data:{ name:'d1', lname:'aviram', sdate:'11/12/13', ndate:'12/14/14', dest:'Thai', pNumber: '123123'}
-app.post('/tofes/:type/:userid', function(req, res) {
-	var user = req.params.userid;
-	var type = req.params.type;
-	var body = req.body; // may body.data
+app.post('/runtofes/:userid', function(req, res) {
+	var user = req.params.userid;	
+	var type = req.body.type;
+	var data = req.body.data; // may body.data
 	
-	
-	res.send(create(user, body, type));
+	res.send(create(user, data, type));
 	res.status(200);
 });
 
@@ -278,6 +280,7 @@ function create(user, data, type) {
 	var st0 = newTofes.stages[0];
 	st0.data.fields.forEach(function(field) {
 		if(field) {
+			console.log(data);
 			field.value = data[field.fieldName];		
 		}
 	});

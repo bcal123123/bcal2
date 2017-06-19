@@ -73,6 +73,20 @@
 });
 
 
-function send_form_details_for_server() {
-    console.log("here");
-}
+
+
+$('#run-form').submit(function(ev) {
+	var tofes = {
+	type: "חול",
+	data: {
+		name: $('#first_name')[0].value,
+	    lname: $('#last_name')[0].value,
+		edate: $('#date_back')[0].value,
+		sdate: $('#date_fly')[0].value,
+		dest: $('#destination')[0].value,
+		pNumber: $('#private_number')[0].value
+	}};
+	
+	$.post('/runtofes/soldier1', tofes);
+
+});
