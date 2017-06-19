@@ -88,7 +88,6 @@ app.get('/tofes/getTofesByApprover/:user', function(req, res) {
 			return stage.done == false;
 		});
 
-		console.log(firstUnDoneStage );
 		if(firstUnDoneStage  && firstUnDoneStage.approver == approver){
 			tofesRes.push(tofes);
 		}
@@ -280,14 +279,12 @@ function create(user, data, type) {
 	var st0 = newTofes.stages[0];
 	st0.data.fields.forEach(function(field) {
 		if(field) {
-			console.log(data);
 			field.value = data[field.fieldName];		
 		}
 	});
 
 	db.tofes.push(newTofes);
 
-	console.log(newTofes);
 	return newTofes;
 }
  
