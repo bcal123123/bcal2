@@ -288,6 +288,7 @@ function create(user, data, type) {
 
 createNewTofesType('hatz', [{type:'input', data: {fields :[{'fieldName':'pNumber'}]}, approver:"{user}"}]);
 create('ofir', {'pNumber':'123123'} ,'hatz');
+create('soldier1', {'pNumber':'123123'} ,'hatz');
 
 
 
