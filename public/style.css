@@ -132,3 +132,11 @@
 .brand-logo{
     margin-right: 1em;
 }
+
+.dropdown-content{
+    padding-right: 0;
+}
+
+.dropdown-content li a{
+    text-align: center;
+}
