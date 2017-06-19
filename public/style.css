@@ -63,3 +63,10 @@
     margin-right: -5px !important;
     margin-left: 5px;
 }
+
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    top: 10%;
+    left: 40%;
+}
