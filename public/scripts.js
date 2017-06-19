@@ -24,6 +24,10 @@
 
         for (var i = 0; i < data.length; i++) {
 
+            if (data[i].creator == user) {
+                continue;
+            }
+
             $('#amountOfWaitToApprove').html('(' + data.length + ')');
 
             $('#noToAproveLabel').hide();
