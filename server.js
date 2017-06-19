@@ -44,6 +44,11 @@ app.get('/tofesByUser/:user', function(req, res) {
 	res.status(200);	
 });
 
+app.get('/allTofeses', function(req, res) {
+	res.send(db);
+});
+
+
 app.get('/approve/:tofesid/:stageid', function(req, res) {
 	var stageid = req.params.stageid;
 	
@@ -69,9 +74,55 @@ app.post('/tofes/:userid', function(req, res) {
 	
 	res.send(create(user, body));
 	res.status(200);
-	
-
 });
+
+// method:post, url:'/tofes/:type/:userid', data:{ name:'d1', lname:'aviram', sdate:'11/12/13', ndate:'12/14/14', dest:'Thai', pNumber: '123123'}
+app.post('/tofes/:type/:userid', function(req, res) {
+	var user = req.params.userid;
+	var type = req.params.type;
+	var body = req.body; // may body.data
+	
+	
+	res.send(create(user, body, type));
+	res.status(200);
+});
+
+var types = {
+	'vication':{},
+};
+
+//todo: data schema ?
+var stage_types = [
+	{ id:"approve" },
+	{ id:"input", data: "fields"},
+	{ id:"video", data: "link"},
+	{ id:"test", data: "questions"}
+];
+
+function createNewTofesType(tofesType, stages){
+	types[tofesType] = {
+		stages:[		
+		]		
+	};
+	
+	stages.forEach(function(stage) {
+		var tStages = types[tofesType].stages;
+		tStages.push({ id:'st' + tStages.length, type: stage.type, 
+			name:tofesType, data: stage.data, done: false, approver: stage.approver });
+	});
+	
+}
+
+function createTofesStagesByType(type, user) {
+	// change data relative to user
+	var stages = types[type].stages;
+	stages.forEach(function(stage) {
+		if(stage.approver == '{user}')
+			stage.approver = user;
+	});
+	
+	return stages;
+}
 
 function createTofesHulStages(user) {
 	
@@ -129,9 +180,7 @@ function createTofesHulStages(user) {
           "type": "test",
           "name": "מבחן",
           "data": {
-            "test": {
-              "qs": [
-                {
+            "test": [{
                   "q": "a?",
                   "a": [
                     "1",
@@ -139,9 +188,8 @@ function createTofesHulStages(user) {
                     "3"
                   ],
                   "expected": "4"
-                }
-              ]
-            }
+            }]
+            
           },
           "done": false,
           "approver": user
@@ -199,25 +247,30 @@ var db =
 };
 
 
-var t1 = create('soldier1',  { name:'stam', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'} );
+var t1 = create('soldier1',  { name:'stam', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
 t1.stages[1].done;
 t1.stages[2].done;
 
 
-var t2 = create('soldier2',  { name:'proper', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'} );
+var t2 = create('soldier2',  { name:'proper', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
 t2.stages[1].done = true;
 t2.stages[2].done = true;
 t2.stages[3].done = true;
 
 
 
-function create(user, data) {
+function create(user, data, type) {
 	var newTofes = {
       "id": "t" + db.tofes.length+1,
 	  "creator":user,
-      "name": "חול"	,
-	  "stages" : createTofesHulStages(user)
+      "name": type	  
 	};
+	
+	if(!type || type == "חול") {
+		newTofes.stages = createTofesHulStages(user)
+	} else {
+		newTofes.stages = createTofesStagesByType(type, user);
+	}
 	
 	var st0 = newTofes.stages[0];
 	st0.data.fields.forEach(function(field) {
@@ -232,6 +285,10 @@ function create(user, data) {
 	return newTofes;
 }
  
+
+
+createNewTofesType('hatz', [{type:'input', data: {fields :[{'fieldName':'pNumber'}]}, approver:"{user}"}]);
+create('ofir', {'pNumber':'123123'} ,'hatz');
 
 
 
