@@ -2,18 +2,28 @@
     direction: rtl;
 }
 
-.row .card .card-content p i {
+#popular {
+    display: flex;
+    justify-content: center;
+}
+
+#popular .card {
+    margin: 20px 10px;
+    min-width: 15%;
+}
+
+.card .card-content p i {
     font-size: 82px;
 }
 
-.row .card {
+.card {
     text-align: center;
 }
 
-.row .card a {
+.card a {
     color: #fff;
 }
 
-.row .card a:visited {
+.card a:visited {
     color: #fff;
 }
