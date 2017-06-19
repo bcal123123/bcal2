@@ -72,40 +72,8 @@
 
                 <h5 color:" class="waited_forms_header">טפסים שממתינים לאישורך</h5>
 
-                <ul class="collapsible wait-for-aprove-list" data-collapsible="accordion">
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons wait-for-aprove-icon">library_books</i>איתי ששון</div>
-                        <div class="collapsible-body">
-                            <p>טיסה לגרמניה</p>
-                            <a class="waves-effect waves-light btn">אשר</a>
-                            <a class="waves-effect waves-light btn">אל תאשר</a>
-                        </div>
-
-                    </li>
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons wait-for-aprove-icon">library_books</i>אופיר ציתיאת</div>
-                        <div class="collapsible-body">
-                            <p>טיסה לצרפת</p>
-                            <a class="waves-effect waves-light btn">אשר</a>
-                            <a class="waves-effect waves-light btn">אל תאשר</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons wait-for-aprove-icon">library_books</i>תום דביר</div>
-                        <div class="collapsible-body">
-                            <p>טיסה לאיטליה</p>
-                            <a class="waves-effect waves-light btn">אשר</a>
-                            <a class="waves-effect waves-light btn">אל תאשר</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons wait-for-aprove-icon">library_books</i>עמית שטאובר</div>
-                        <div class="collapsible-body">
-                            <p>טיסה לספרד</p>
-                            <a class="waves-effect waves-light btn">אשר</a>
-                            <a class="waves-effect waves-light btn">אל תאשר</a>
-                        </div>
-                    </li>
+                <ul class="collapsible wait-for-aprove-list" data-collapsible="accordion" id="wait-for-aprove-list">
+                  
                 </ul>
             </div>
         </div>
@@ -151,7 +119,7 @@
 
             </div>
             <div class="modal-footer center-align modal-footer-container">
-                <a href="#!" class="modal-action modal-close waves-effect waves-light btn">הרץ טופס</a>
+                <a href="#!" onclick="send_form_details_for_server();" class="modal-action modal-close waves-effect waves-light btn">הרץ טופס</a>
             </div>
         </div>
 
