@@ -28,19 +28,18 @@ function getTofesById(id) {
 	return resTofes;
 }
 
-app.get('/tofesByUser/:user', function(req, res) {
+app.get('/tofesesByUser/:user', function(req, res) {
 	var user = req.params.user;
 	
-	var resTofes;
+	var res = [];
 	db.tofes.forEach(function(tofes){ 
 		if(tofes.creator == user) {
-			resTofes = tofes;
-			return;
+			res.push(tofes);
 		}
 			
 	});
 	
-	res.send(resTofes);
+	res.send(res);
 	res.status(200);	
 });
 
