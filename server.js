@@ -1,10 +1,14 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var _ = require('lodash')
+var bodyParser = require('body-parser');
 
 var port = process.env.port || 8200;
 
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/tofesById/:id', function(req, res) {
 	var id = req.params.id;
@@ -31,6 +35,8 @@ function getTofesById(id) {
 app.get('/tofesesByUser/:user', function(req, res) {
 	var user = req.params.user;
 	
+	console.log('GET: /tofesesByUser/' + user);
+	
 	var resdata = [];
 	db.tofes.forEach(function(tofes){ 
 		if(tofes.creator == user) {
@@ -50,9 +56,12 @@ app.get('/allTofeses', function(req, res) {
 
 app.get('/approve/:tofesid/:stageid', function(req, res) {
 	var stageid = req.params.stageid;
+	var tofesid = req.params.tofesid;
+	
+	console.log('GET: /approve/' + tofesid, stageid);
 	
 	var resStage; 
-	var tofes = getTofesById(req.params.tofesid);
+	var tofes = getTofesById(tofesid);
 	tofes.stages.forEach(function(stage) {
 		if(stage.id == stageid) {
 			stage.done = true;
@@ -70,19 +79,43 @@ app.post('/tofes/:userid', function(req, res) {
 	var user = req.params.userid;
 	var body = req.body; // may body.data
 	
+	console.log('POST: /tofes/' + user);
 	
 	res.send(create(user, body));
 	res.status(200);
 });
 
+app.get('/tofes/getTofesByApprover/:user', function(req, res) {
+	var approver = req.params.user;
+	
+	console.log('GET: /tofes/getTofesByApprover/' + approver);
+	
+	var tofesRes=[];
+	db.tofes.forEach(function(tofes) {
+		var firstUnDoneStage = _.find(tofes.stages, function(stage) { 
+			return stage.done == false;
+		});
+
+		if(firstUnDoneStage  && firstUnDoneStage.approver == approver){
+			tofesRes.push(tofes);
+		}
+	});
+	res.send(tofesRes);
+	res.status(200);
+	
+});
+
+
 // method:post, url:'/tofes/:type/:userid', data:{ name:'d1', lname:'aviram', sdate:'11/12/13', ndate:'12/14/14', dest:'Thai', pNumber: '123123'}
-app.post('/tofes/:type/:userid', function(req, res) {
-	var user = req.params.userid;
-	var type = req.params.type;
-	var body = req.body; // may body.data
+app.post('/runtofes/:userid', function(req, res) {
+	var user = req.params.userid;	
+	var type = req.body.type;
+	var data = req.body.data; // may body.data
+	
+	console.log('POST: /runtofes/' + user + ' type=' + type + ' data=' + data.name);
 	
 	
-	res.send(create(user, body, type));
+	res.send(create(user, data, type));
 	res.status(200);
 });
 
@@ -239,24 +272,7 @@ function createTofesHulStages(user) {
 		return stages;
 }
 
-
-var db = 
-{
-  "tofes": []
-};
-
-
-var t1 = create('soldier1',  { name:'stam', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
-t1.stages[1].done;
-t1.stages[2].done;
-
-
-var t2 = create('soldier2',  { name:'proper', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
-t2.stages[1].done = true;
-t2.stages[2].done = true;
-t2.stages[3].done = true;
-
-
+var db = { "tofes": [] };
 
 function create(user, data, type) {
 	var newTofes = {
@@ -280,10 +296,21 @@ function create(user, data, type) {
 
 	db.tofes.push(newTofes);
 
-	console.log(newTofes);
 	return newTofes;
 }
  
+
+var t1 = create('soldier1',  { name:'soldier1', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
+t1.stages[1].done = true;
+t1.stages[2].done = true;
+t1.stages[3].done = true;
+
+var t2 = create('soldier2',  { name:'soldier2', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
+t2.stages[1].done = true;
+t2.stages[2].done = true;
+t2.stages[3].done = true;
+t2.stages[4].done = true;
+t2.stages[5].done = true;
 
 
 createNewTofesType('hatz', [{type:'input', data: {fields :[{'fieldName':'pNumber'}]}, approver:"{user}"}]);
@@ -293,4 +320,3 @@ create('soldier1', {'pNumber':'123123'} ,'hatz');
 
 
 app.listen(port);
-
