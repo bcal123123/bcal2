@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     if (localStorage["user"] == null) {
         localStorage["user"] = "soldier1";
     }
@@ -8,19 +8,23 @@
         
         tofeses.forEach(function (tofes) {
             var stages = "";
+            var isTofesComplete = true;
+            
             tofes["stages"].forEach(function (stage) {
-                var isDone = "";
+                var isDone = "";                
 
                 if (stage["done"]) {
                     isDone = "completed";
                 }
+                else
+                    isTofesComplete = false;
 
                 stages += "<li class='" + isDone + "'><span class='bubble'></span>" + stage["name"] + "</li>";
             });
 
-            var element = "<li><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
+            var element = "<li "+ isTofesComplete ? "class='copmleted-tofes'" : "" +"><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
                 tofes["name"] +
-                "</div><div class='collapsible-body'>" +
+                "</div><div class='collapsible-body>" +
                 "<ul class='progress-indicator'>" + stages + "</ul></div></li>";
 
             elements.push(element);

@@ -140,3 +140,9 @@
 .dropdown-content li a{
     text-align: center;
 }
+
+.copmleted-tofes .collapsible-header,
+.copmleted-tofes .collapsible-header i{
+    color: white;
+    background-color: #65d074;
+}
