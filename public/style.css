@@ -129,7 +129,13 @@
     background-color: rgb(49, 46, 87);
 }
 
-.brand-logo{
+.nav-wrapper {
+    width:63%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.brand-logo {
     margin-right: 1em;
 }
 
