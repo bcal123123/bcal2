@@ -22,7 +22,7 @@ $(document).ready(function () {
                 stages += "<li class='" + isDone + "'><span class='bubble'></span>" + stage["name"] + "</li>";
             });
 
-            var element = "<li "+ isTofesComplete ? "class='copmleted-tofes'" : "" +"><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
+            var element = "<li "+ (isTofesComplete ? "class='copmleted-tofes'" : "") + "><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
                 tofes["name"] +
                 "</div><div class='collapsible-body>" +
                 "<ul class='progress-indicator'>" + stages + "</ul></div></li>";
