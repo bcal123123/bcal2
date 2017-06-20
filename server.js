@@ -41,7 +41,8 @@ function ResolveApproverSyntax(user, approver){
     if (approver == "::0")
         return user;
 
-    if (!user.startsWith("soldier"))
+    //if (!user.startsWith("soldier"))
+    if (user.lastIndexOf("soldier", 0) !== 0)
         return user;
     
     return resolver[user][approver];
