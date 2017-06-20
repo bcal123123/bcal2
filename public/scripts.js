@@ -8,17 +8,26 @@ $(document).ready(function () {
         
         tofeses.forEach(function (tofes) {
             var stages = "";
+            var isTofesDone = true;
             tofes["stages"].forEach(function (stage) {
                 var isDone = "";
 
                 if (stage["done"]) {
                     isDone = "completed";
                 }
+                else{
+                    isTofesDone = false;
+                }
 
                 stages += "<li class='" + isDone + "'><span class='bubble'></span>" + stage["name"] + "</li>";
             });
 
-            var element = "<li><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
+            var tofesDoneClass = "";
+            if (isTofesDone){
+                tofesDoneClass = " class='tofes-completed";
+            }
+            
+            var element = "<li" + tofesDoneClass +"><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
                 tofes["name"] +
                 "</div><div class='collapsible-body'>" +
                 "<ul class='progress-indicator'>" + stages + "</ul></div></li>";
