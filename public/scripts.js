@@ -106,32 +106,37 @@ $(document).ready(function () {
             $('#noToAproveLabel').hide();
 
             var stages = data[i].stages;
-            var fields = stages[0].data.fields;
+            var fields;
+            if (stages[0].data && stages[0].data.fields)
+                fields= stages[0].data.fields;
 
             var f = "";
 
-            fields.forEach(function (field) {
-                if (field.fieldName == 'name') {
-                    field.fieldName = 'שם פרטי';
-                }
-                if (field.fieldName == 'lname') {
-                    field.fieldName = 'שם משפחה';
-                }
-                if (field.fieldName == 'sdate') {
-                    field.fieldName = 'תאריך טיסה';
-                }
-                if (field.fieldName == 'edate') {
-                    field.fieldName = 'תאריך חזרה';
-                }
-                if (field.fieldName == 'dest') {
-                    field.fieldName = 'יעד';
-                }
-                if (field.fieldName == 'pNumber') {
-                    field.fieldName = 'מספר אישי';
-                }
+            if (fields){
+                fields.forEach(function (field) {
+                    if (field.fieldName == 'name') {
+                        field.fieldName = 'שם פרטי';
+                    }
+                    if (field.fieldName == 'lname') {
+                        field.fieldName = 'שם משפחה';
+                    }
+                    if (field.fieldName == 'sdate') {
+                        field.fieldName = 'תאריך טיסה';
+                    }
+                    if (field.fieldName == 'edate') {
+                        field.fieldName = 'תאריך חזרה';
+                    }
+                    if (field.fieldName == 'dest') {
+                        field.fieldName = 'יעד';
+                    }
+                    if (field.fieldName == 'pNumber') {
+                        field.fieldName = 'מספר אישי';
+                    }
 
-                f += "<b>" + field.fieldName + "</b>: " + field.value + "<br/>";
-            });
+                    f += "<b>" + field.fieldName + "</b>: " + field.value + "<br/>";
+                });
+
+            }
 
             for (var j = 0; j < stages.length; j++) {
                 var item = stages[j];
@@ -245,23 +250,7 @@ $(document).ready(function () {
 });
 
 function RegisterForm(){
-    $('#run-form').submit(function(ev) {
-        var tofes = {
-            type: "חול",
-            data: {
-                name: $('#first_name')[0].value,
-                lname: $('#last_name')[0].value,
-                edate: $('#date_back')[0].value,
-                sdate: $('#date_fly')[0].value,
-                dest: $('#destination')[0].value,
-                pNumber: $('#private_number')[0].value
-            }};
-
-        $.post('/runtofes/' + localStorage['user'], tofes, function(data){
-            location.reload();
-        });
-
-    });
+    /**/
 }
 
 $('#user-dropdown li a').on('click', function(e){
