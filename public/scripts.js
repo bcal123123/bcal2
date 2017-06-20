@@ -24,7 +24,7 @@ $(document).ready(function () {
 
             var tofesDoneClass = "";
             if (isTofesDone){
-                tofesDoneClass = " class='tofes-completed";
+                tofesDoneClass = " class='tofes-completed'";
             }
             
             var element = "<li" + tofesDoneClass +"><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
