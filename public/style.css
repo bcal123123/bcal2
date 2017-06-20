@@ -141,7 +141,8 @@
     text-align: center;
 }
 
-/*.copmleted-tofes .collapsible-header{
+.tofes-completed .collapsible-header,
+.tofes-completed .collapsible-header i{
     color: white;
     background-color: #65d074;
-}*/
+}
