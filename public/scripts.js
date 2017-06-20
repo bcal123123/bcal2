@@ -238,7 +238,7 @@ $(document).ready(function () {
 
 
                     var headline = "טופס זה ממתין לאישורך. פרטים מלאים:<br/> " ;
-                    $("#wait-for-me-list").append("<li><div style='direction:rtl' class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>טופס " + data[i].name + ", של " + data[i].creator + "</div><div class='collapsible-body' style='padding:0px;padding-right:30px'><p>" + fullhtml + "</p><center><button class='waitToMe waves-effect waves-light btn' data-tofesid='" + data[i].id + "' data-stageid='" + item.id + "'>אשר</button> &nbsp <a class='waves-effect waves-light btn'>דחה</a><br/><br/></center></div></li>");
+                    $("#wait-for-me-list").append("<li><div style='direction:rtl' class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" + data[i].name + ", של " + data[i].creator + "</div><div class='collapsible-body' style='padding:0px;padding-right:30px'><p>" + fullhtml + "</p><center><button class='waitToMe waves-effect waves-light btn' data-tofesid='" + data[i].id + "' data-stageid='" + item.id + "'>אשר</button> &nbsp <a class='waves-effect waves-light btn'>דחה</a><br/><br/></center></div></li>");
                     break;
                 }
             }
