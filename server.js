@@ -128,9 +128,10 @@ app.get('/tofes/getTofesByApprover/:user', function(req, res) {
 
 // method:post, url:'/tofes/:type/:userid', data:{ name:'d1', lname:'aviram', sdate:'11/12/13', ndate:'12/14/14', dest:'Thai', pNumber: '123123'}
 app.post('/runtofes/:userid', function(req, res) {
+    console.log('asdf');
 	var user = req.params.userid;	
 	var type = req.body.type;
-	var data = req.body.data; // may body.data
+	var data = req.body.data;
 	
 	res.send(create(user, data, type));
 	res.status(200);
