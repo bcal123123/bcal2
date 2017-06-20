@@ -134,9 +134,6 @@ app.post('/runtofes/:userid', function(req, res) {
 	var type = req.body.type;
 	var data = req.body.data; // may body.data
 	
-	console.log('POST: /runtofes/' + user + ' type=' + type + ' data=' + data.name);
-	
-	
 	res.send(create(user, data, type));
 	res.status(200);
 });
