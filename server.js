@@ -32,12 +32,18 @@ function ResolveApproverSyntax(user, approver){
         "soldier2": {
             "::1": "rashatz2",
             "::2": "ramad2"
+        },
+        "rashatz1": {
+            "::1": "rashatz1"
         }
     };
 
     if (approver == "::0")
         return user;
 
+    if (!user.startsWith("soldier"))
+        return user;
+    
     return resolver[user][approver];
 }
 
