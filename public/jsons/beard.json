@@ -1,0 +1,28 @@
+{
+  "modal": "<form id=\"run-form\"><h4>פטור זקן</h4><div class=\"row\"><p>אני רוצה זקן</p></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"beard\",data: {}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
+  "name": "בקשה לפטור זקן",
+  "image": "http://static.fashionbeans.com/wp-content/uploads/2016/04/patchybeard2.jpg",
+  "stages": [
+    {
+      "id": "1",
+      "type": "approve",
+      "name": "אישור רשצ",
+      "done": false,
+      "approver": "::1"
+    },
+    {
+      "id": "2",
+      "type": "approve",
+      "name": "אישור רמד",
+      "done": false,
+      "approver": "::2"
+    },
+    {
+      "id": "3",
+      "type": "approve",
+      "name": "אישור אלמ",
+      "done": false,
+      "approver": "gilgur"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "modal": "<form id=\"run-form\"><h4>נשק</h4><div class=\"row\"><p>טופס נשק למטרות תורנויות</p></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"gun\",data: {}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
+  "name": "טופס נשק",
+  "image": "/img/gun.jpg",
+  "stages": [
+    {
+      "id": "1",
+      "type": "video",
+      "name": "תדרוך",
+      "data": {
+        "link": "https://www.youtube.com/embed/X9iS2mcSRoY"
+      },
+      "done": false,
+      "approver": "::0"
+    },
+    {
+      "id": "2",
+      "type": "test",
+      "name": "מבחן",
+      "data": {
+        "test": [{
+          "q": "האם מותר לפתוח באש ללא פקודה?",
+          "a": [
+            "כן",
+            "לא",
+            "רק במטווח"
+          ],
+          "expected": "לא"
+        },{
+          "q": "מהי מטרת המק-פורק?",
+          "a": [
+            "לזהור בחושך כדי שיהיה קל למצוא את הנשק בלילה",
+            "לעצבן את הפורקים",
+            "לסמן שבית הבליעה נקי מכדור"
+          ],
+          "expected": "לסמן שבית הבליעה נקי מכדור"
+        }]
+      },
+      "done": false,
+      "approver": "::0"
+    },
+    {
+      "id": "3",
+      "type": "approve",
+      "name": "אישור רשצ",
+      "done": false,
+      "approver": "::1"
+    }
+  ]
+}
