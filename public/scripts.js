@@ -64,6 +64,11 @@ $(document).ready(function () {
             $("#my-forms").append(element);
         });
 
+        var myCollapsible = $('.collapsible.wait-for-aprove-list');
+        for (var i = 0; i < elements.length; i++)
+            myCollapsible.collapsible('open',i);
+
+
         if (elements.length != 0) {
             $('#noAvailablesFormsLabel').hide();
         }
