@@ -10,6 +10,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/empties', function(res, req){
+    req.send(db.empties);
+});
+
 app.get('/tofesById/:id', function(req, res) {
 	var id = req.params.id;
 	
@@ -287,22 +291,22 @@ function createTofesHulStages(user) {
           "name": "אישור רמטית",
           "done": false,
           "approver": "ramatit"
-        }]
+        }];
 
 		return stages;
 }
 
-var db = { "tofes": [] };
+var db = { "tofes": [], "empties": {} };
 
 function create(user, data, type) {
 	var newTofes = {
       "id": "t" + db.tofes.length+1,
 	  "creator":user,
-      "name": type	  
+      "name": type
 	};
 	
 	if(!type || type == "חול") {
-		newTofes.stages = createTofesHulStages(user)
+		newTofes.stages = createTofesHulStages(user);
 	} else {
 		newTofes.stages = createTofesStagesByType(type, user);
 	}
@@ -318,7 +322,30 @@ function create(user, data, type) {
 
 	return newTofes;
 }
- 
+
+db.empties.hul = {
+    modal: "<form id=\"run-form\"><h4>הרצת טופס חול</h4><div class=\"row\"><div class=\"input-field col s6\"><input id=\"last_name\" type=\"text\" class=\"validate\"><label for=\"last_name\" class=\"hebrew-fix\">שם משפחה</label></div><div class=\"input-field col s6\"><input id=\"first_name\" type=\"text\" class=\"validate\"><label for=\"first_name\" class=\"hebrew-fix\">שם פרטי</label></div></div><div class=\"row\"><div class=\"input-field col s6\"><input id=\"date_back\" type=\"text\" class=\"validate\"><label for=\"date_back\" class=\"hebrew-fix\">תאריך חזרה</label></div><div class=\"input-field col s6\"><input id=\"date_fly\" type=\"text\" class=\"validate\"><label for=\"date_fly\" class=\"hebrew-fix\">תאריך טיסה</label></div></div><div class=\"row\"><div class=\"input-field col s12\"><input id=\"destination\" type=\"text\" class=\"validate\"><label for=\"destination\" class=\"hebrew-fix\">יעד</label></div></div><div class=\"row\"><div class=\"input-field col s12\"><input id=\"private_number\" type=\"text\" class=\"validate\"><label for=\"private_number\" class=\"hebrew-fix\">מספר אישי</label></div></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form>",
+    name: "טופס חו\"ל",
+    image: "/img/hul.jpg"
+};
+
+db.empties.trip = {
+    modal: "<p>WIP</p>",
+    name: "טופס טיולים",
+    image: "/img/trip.jpg"
+};
+
+db.empties.sick = {
+    modal: "<p>WIP</p>",
+    name: "הצהרה",
+    image: "/img/sick.jpg"
+};
+
+db.empties.driver = {
+    modal: "<p>WIP</p>",
+    name: "מדבקה לרכב",
+    image: "/img/driver.jpg"
+};
 
 var t1 = create('soldier1',  { name:'soldier1', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
 t1.stages[1].done = true;

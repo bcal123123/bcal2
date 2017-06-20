@@ -1,11 +1,33 @@
+var empties;
+
 $(document).ready(function () {
     if (localStorage["user"] == null) {
         localStorage["user"] = "soldier1";
     }
 
+    $.get('/empties', function(data){
+   console.log(data);
+        empties = data;
+        
+        Object.keys(empties).forEach(function(key){
+            var empty = empties[key];
+            var element = "<a data-empty=\""+key+"\" href=\"#emptyModal\"><div class=\"bkal-form-card hul-form card light-blue darken-3\" style=\"background-image:url("+empty.image+")\"><div class=\"card-content white-text\"><span class=\"card-title\">"+empty.name+"</span></div></div></a>";
+            $('#popular').append(element);
+        });
+    });
+
+    $('#emptyModal').modal({
+        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            var empty = trigger.data('empty');
+            console.log(empties[empty]);
+            $('#emptyModal .modal-content').html(empties[empty].modal);
+            RegisterForm();
+        }
+    });
+
     $.get("/tofesesByUser/" + localStorage["user"], function (tofeses) {
         var elements = [];
-        
+
         tofeses.forEach(function (tofes) {
             var stages = "";
             var isTofesDone = true;
@@ -29,7 +51,7 @@ $(document).ready(function () {
                 tofesDoneClass = " class='tofes-completed'";
                 dismissTofesButton = "<a class='aves-effect waves-light btn' onclick=\"dissmissTofes('"+tofes.id+"')\">גבר שחרר</a>";
             }
-            
+
             var element = "<li" + tofesDoneClass +"><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
                 tofes["name"] +
                 "</div><div class='collapsible-body'>" +
@@ -218,24 +240,25 @@ $(document).ready(function () {
     /* end of wait to me section */
 });
 
+function RegisterForm(){
+    $('#run-form').submit(function(ev) {
+        var tofes = {
+            type: "חול",
+            data: {
+                name: $('#first_name')[0].value,
+                lname: $('#last_name')[0].value,
+                edate: $('#date_back')[0].value,
+                sdate: $('#date_fly')[0].value,
+                dest: $('#destination')[0].value,
+                pNumber: $('#private_number')[0].value
+            }};
 
+        $.post('/runtofes/' + localStorage['user'], tofes, function(data){
+            location.reload();
+        });
 
-
-$('#run-form').submit(function(ev) {
-    var tofes = {
-        type: "חול",
-        data: {
-            name: $('#first_name')[0].value,
-            lname: $('#last_name')[0].value,
-            edate: $('#date_back')[0].value,
-            sdate: $('#date_fly')[0].value,
-            dest: $('#destination')[0].value,
-            pNumber: $('#private_number')[0].value
-        }};
-
-    $.post('/runtofes/' + localStorage['user'], tofes);
-
-});
+    });
+}
 
 $('#user-dropdown li a').on('click', function(e){
     localStorage.setItem('user', $(e.target).data('user'));
@@ -250,3 +273,5 @@ function dissmissTofes(id){
         }
     });
 }
+
+RegisterForm();
