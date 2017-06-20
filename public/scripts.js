@@ -1,4 +1,4 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
     if (localStorage["user"] == null) {
         localStorage["user"] = "soldier1";
     }
@@ -119,15 +119,36 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.waitToMe', function (item) {
-        var tofesid = $(this).data('tofesid');
-        var stageid = $(this).data('stageid');
+        var number = 1;
 
-        $.get("/approve/" + tofesid + "/" + stageid, function (data) {
-            Materialize.toast('הטופס אושר בהצלחה', 1000, '', function () {
-                location.reload();
+        var canContinue = true;
+
+        if (lastQuestions) {
+            lastQuestions.forEach(function (q) {
+                if ($('input[name=q_' + number + ']:checked').val() != q.expected) {
+                    canContinue = false;
+                    Materialize.toast('לא ענית נכון על השאלון', 1000);
+                }
+                number++;
             });
-        });
+        }
+
+        if (canContinue) {
+            var tofesid = $(this).data('tofesid');
+            var stageid = $(this).data('stageid');
+
+            $.get("/approve/" + tofesid + "/" + stageid, function (data) {
+                Materialize.toast('הטופס אושר בהצלחה', 1000, '', function () {
+                    location.reload();
+                });
+            });
+        } else {
+            return false;
+        }
+       
     });
+
+    var lastQuestions;
 
     function updateAllNeedToMe(data) {
 
@@ -142,16 +163,33 @@ $(document).ready(function () {
             $('#noToMeLabel').hide();
 
             var stages = data[i].stages;
-            var fields = stages[0].data.fields;
 
-            var f = "qqqq";
-
+            
             for (var j = 0; j < stages.length; j++) {
                 var item = stages[j];
                 if (item.done == false) {
                     console.log(item);
-                    var headline = "טופס זה ממתין לאישורך. פרטים מלאים:<br/> " + f;
-                    $("#wait-for-me-list").append("<li><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>טופס " + data[i].name + ", של " + data[i].creator + "</div><div class='collapsible-body' style='padding:0px;padding-right:30px'><p>" + headline + "</p><center><button class='waitToMe waves-effect waves-light btn' data-tofesid='" + data[i].id + "' data-stageid='" + item.id + "'>אשר</button> &nbsp <a class='waves-effect waves-light btn'>דחה</a><br/><br/></center></div></li>");
+
+                    var fullhtml = "<form >";
+
+                    if (item.type == "test") {
+                        
+                        var questions = item.data.test;
+                        lastQuestions=questions;
+                        var number = 1;
+                        fullhtml += "<h5>מבחן</h5>";
+                        questions.forEach(function (cQuestion) {
+                            fullhtml += "<h6>" + cQuestion.q + "<h6>";
+                            fullhtml += "<div ><input type='radio' name='q_" + number + "' value='" + cQuestion.a[0] + "' style='left:0px !important; opacity:1;position:initial'>" + cQuestion.a[0] + "</div>";
+                            fullhtml += "<div ><input type='radio' name='q_" + number + "' value='" + cQuestion.a[1] + "' style='left:0px !important; opacity:1;position:initial'>" + cQuestion.a[1] + "</div>";
+                            fullhtml += "<div ><input type='radio' name='q_" + number + "' value='" + cQuestion.a[2] + "' style='left:0px !important; opacity:1;position:initial'>" + cQuestion.a[2] + "</div>";
+                            number++;
+                        });
+
+                        fullhtml += "</form>";
+                    }
+                    var headline = "טופס זה ממתין לאישורך. פרטים מלאים:<br/> " ;
+                    $("#wait-for-me-list").append("<li><div style='direction:rtl' class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>טופס " + data[i].name + ", של " + data[i].creator + "</div><div class='collapsible-body' style='padding:0px;padding-right:30px'><p>" + fullhtml + "</p><center><button class='waitToMe waves-effect waves-light btn' data-tofesid='" + data[i].id + "' data-stageid='" + item.id + "'>אשר</button> &nbsp <a class='waves-effect waves-light btn'>דחה</a><br/><br/></center></div></li>");
                     break;
                 }
             }
