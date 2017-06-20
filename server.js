@@ -63,8 +63,6 @@ function getTofesById(id) {
 app.get('/tofesesByUser/:user', function(req, res) {
 	var user = req.params.user;
 	
-	console.log('GET: /tofesesByUser/' + user);
-	
 	var resdata = [];
 	db.tofes.forEach(function(tofes){ 
 		if(tofes.creator == user && !tofes.dismissed) {
@@ -86,8 +84,6 @@ app.get('/approve/:tofesid/:stageid', function(req, res) {
 	var stageid = req.params.stageid;
 	var tofesid = req.params.tofesid;
 	
-	console.log('GET: /approve/' + tofesid, stageid);
-	
 	var resStage; 
 	var tofes = getTofesById(tofesid);
 	tofes.stages.forEach(function(stage) {
@@ -107,16 +103,12 @@ app.post('/tofes/:userid', function(req, res) {
 	var user = req.params.userid;
 	var body = req.body; // may body.data
 	
-	console.log('POST: /tofes/' + user);
-	
 	res.send(create(user, body));
 	res.status(200);
 });
 
 app.get('/tofes/getTofesByApprover/:user', function(req, res) {
 	var approver = req.params.user;
-	
-	console.log('GET: /tofes/getTofesByApprover/' + approver);
 	
 	var tofesRes=[];
 	db.tofes.forEach(function(tofes) {
