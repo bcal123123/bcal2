@@ -202,7 +202,7 @@ function createTofesHulStages(user) {
           "type": "video",
           "name": "תדרוך",
           "data": {
-            "link": "sadasd.youtube.com"
+            "link": "https://www.youtube.com/embed/Y_OLslE3bX8"
           },
           "done": false,
           "approver": user
@@ -214,6 +214,14 @@ function createTofesHulStages(user) {
           "data": {
             "test": [{
                   "q": "האם מותר לדבר בחול על היחידה?",
+                  "a": [
+                    "כן",
+					"לא",
+					"תלוי איך היא נראית"
+                  ],
+                  "expected": "לא"
+            },{
+                  "q": "האם מותר לצאת מהשדה בקונקשן?",
                   "a": [
                     "כן",
 					"לא",
