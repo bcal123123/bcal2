@@ -1,4 +1,4 @@
-body{
+body {
     overflow-y: scroll;
 }
 
@@ -130,30 +130,34 @@ body{
     background-size: cover;
 }
 
-.bkal-nav{
+.bkal-nav {
     background-color: rgb(49, 46, 87);
 }
 
 .nav-wrapper {
-    width:63%;
-    margin-left:auto;
-    margin-right:auto;
+    width: 63%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .brand-logo {
     margin-right: 1em;
 }
 
-.dropdown-content{
+.dropdown-content {
     padding-right: 0;
 }
 
-.dropdown-content li a{
+.dropdown-content li a {
     text-align: center;
 }
 
 .tofes-completed .collapsible-header,
-.tofes-completed .collapsible-header i{
+.tofes-completed .collapsible-header i {
     color: white;
     background-color: #65d074;
+}
+
+#emptyModal .row {
+    direction: rtl;
 }

@@ -49,7 +49,7 @@ $(document).ready(function () {
             var tofesDoneClass = "";
             if (isTofesDone){
                 tofesDoneClass = " class='tofes-completed'";
-                dismissTofesButton = "<a class='aves-effect waves-light btn' onclick=\"dissmissTofes('"+tofes.id+"')\">גבר שחרר</a>";
+                dismissTofesButton = "<a class='aves-effect waves-light btn' onclick=\"dissmissTofes('"+tofes.id+"')\">סיום תהליך</a>";
             }
 
             var element = "<li" + tofesDoneClass +"><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
