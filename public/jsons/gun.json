@@ -45,6 +45,13 @@
       "name": "אישור רשצ",
       "done": false,
       "approver": "::1"
+    },
+    {
+      "id": "4",
+      "type": "approve",
+      "name": "אישור רמד",
+      "done": false,
+      "approver": "::2"
     }
   ]
 }
