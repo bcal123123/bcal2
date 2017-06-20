@@ -141,8 +141,7 @@
     text-align: center;
 }
 
-.copmleted-tofes .collapsible-header,
-.copmleted-tofes .collapsible-header i{
+.copmleted-tofes .collapsible-header{
     color: white;
     background-color: #65d074;
 }
