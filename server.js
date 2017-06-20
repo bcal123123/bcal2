@@ -325,7 +325,8 @@ function create(user, data, type) {
     newTofes.stages = [];
     emptyTofes.stages.forEach(function(emptyStage){
         var newStage = {};
-        Object.assign(newStage, emptyStage);
+        //Object.assign(newStage, emptyStage); //Fuck old versions
+        for (var attrname in emptyStage) { newStage[attrname] = emptyStage[attrname]; }
 
         if (newStage.approver.startsWith("::"))
             newStage.approver = ResolveApproverSyntax(user, newStage.approver);
