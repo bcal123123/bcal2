@@ -1,5 +1,5 @@
 {
-  "modal": "<form id=\"run-form\"><h4>נשק</h4><div class=\"row\"><p>טופס נשק למטרות תורנויות</p></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"gun\",data: {}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
+  "modal": "<form id=\"run-form\"><h4>נשק</h4><div class=\"row\" style='display: flex;'><p>טופס נשק למטרות תורנויות</p></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"gun\",data: {}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
   "name": "טופס נשק",
   "image": "/img/gun.jpg",
   "stages": [

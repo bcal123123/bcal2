@@ -161,3 +161,12 @@ body {
 #emptyModal .row {
     direction: rtl;
 }
+
+.english{
+    direction: ltr;
+}
+
+textarea{
+    height: 28em;
+    resize: none;
+}

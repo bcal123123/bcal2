@@ -476,7 +476,7 @@ db.empties.hul = {
 };
 
 db.empties.sick = {
-    modal: "<form id=\"run-form\"><h4>הצהרה</h4><div class=\"row\"><div class=\"input-field col s6\"><input id=\"date\" type=\"text\" class=\"validate\"><label for=\"date\" class=\"hebrew-fix\">תאריך</label></div></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"sick\",data: {date: $('#date')[0].value}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
+    modal: "<form id=\"run-form\"><h4>הצהרה</h4><div class=\"row\" style='display: flex;'><div class=\"input-field col s6\"><input id=\"date\" type=\"text\" class=\"validate\"><label for=\"date\" class=\"hebrew-fix\">תאריך</label></div></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"sick\",data: {date: $('#date')[0].value}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
     name: "הצהרה",
     image: "/img/sick.jpg",
     stages: [
@@ -492,7 +492,7 @@ db.empties.sick = {
 };
 
 db.empties.driver = {
-    modal: "<form id=\"run-form\"><h4>מדבקה לרכב</h4><div class=\"row\"><div class=\"input-field col s6\"><input id=\"carnum\" type=\"text\" class=\"validate\"><label for=\"carnum\" class=\"hebrew-fix\">מספר רכב</label></div></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"driver\",data: {carnum: $('#carnum')[0].value}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
+    modal: "<form id=\"run-form\"><h4>מדבקה לרכב</h4><div class=\"row\" style='display: flex;'><div class=\"input-field col s6\"><input id=\"carnum\" type=\"text\" class=\"validate\"><label for=\"carnum\" class=\"hebrew-fix\">מספר רכב</label></div></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"driver\",data: {carnum: $('#carnum')[0].value}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
     name: "מדבקה לרכב",
     image: "/img/driver.jpg",
     stages: [
