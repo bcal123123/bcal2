@@ -29,6 +29,10 @@
         elements.forEach(function (element) {
             $("#my-forms").append(element);
         });
+
+        if (elements.length != 0) {
+            $('#noAvailablesFormsLabel').hide();
+        }
     });
 });
 
