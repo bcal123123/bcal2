@@ -9,6 +9,7 @@ $(document).ready(function () {
         tofeses.forEach(function (tofes) {
             var stages = "";
             var isTofesDone = true;
+
             tofes["stages"].forEach(function (stage) {
                 var isDone = "";
 
@@ -22,15 +23,17 @@ $(document).ready(function () {
                 stages += "<li class='" + isDone + "'><span class='bubble'></span>" + stage["name"] + "</li>";
             });
 
+            var dismissTofesButton = "";
             var tofesDoneClass = "";
             if (isTofesDone){
                 tofesDoneClass = " class='tofes-completed'";
+                dismissTofesButton = "<a class='aves-effect waves-light btn' onclick=\"dissmissTofes('"+tofes.id+"')\">גבר שחרר</a>";
             }
             
             var element = "<li" + tofesDoneClass +"><div class='collapsible-header'><i class='material-icons wait-for-aprove-icon'>library_books</i>" +
                 tofes["name"] +
                 "</div><div class='collapsible-body'>" +
-                "<ul class='progress-indicator'>" + stages + "</ul></div></li>";
+                "<ul class='progress-indicator'>" + stages + "</ul>" + dismissTofesButton + "</div></li>";
 
             elements.push(element);
         });
@@ -239,3 +242,11 @@ $('#user-dropdown li a').on('click', function(e){
     localStorage.setItem('user-display', $(e.target).html());
     location.reload();
 });
+
+function dissmissTofes(id){
+    $.post('/dismiss/'+id, function(data){
+        if (data){
+            location.reload();
+        }
+    });
+}

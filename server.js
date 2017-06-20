@@ -39,7 +39,7 @@ app.get('/tofesesByUser/:user', function(req, res) {
 	
 	var resdata = [];
 	db.tofes.forEach(function(tofes){ 
-		if(tofes.creator == user) {
+		if(tofes.creator == user && !tofes.dismissed) {
 			resdata.push(tofes);
 		}
 			
@@ -117,6 +117,18 @@ app.post('/runtofes/:userid', function(req, res) {
 	
 	res.send(create(user, data, type));
 	res.status(200);
+});
+
+app.post('/dismiss/:tofesid', function(req, res){
+    var tofesid = req.params.tofesid;
+
+    var tofesToDismiss = _.find(db.tofes, function(tofes) {
+        return tofes.id == tofesid;
+    });
+
+    tofesToDismiss.dismissed = true;
+
+    res.send(true);
 });
 
 var types = {
@@ -319,11 +331,12 @@ t2.stages[2].done = true;
 t2.stages[3].done = true;
 t2.stages[4].done = true;
 t2.stages[5].done = true;
+t2.stages[6].done = true;
+t2.stages[7].done = true;
+t2.stages[8].done = true;
 
 
 createNewTofesType('hatz', [{type:'input', data: {fields :[{'fieldName':'pNumber'}]}, approver:"{user}"}]);
-create('ofir', {'pNumber':'123123'} ,'hatz');
-create('soldier1', {'pNumber':'123123'} ,'hatz');
 
 
 
