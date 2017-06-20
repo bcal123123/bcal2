@@ -250,7 +250,8 @@ $(document).ready(function () {
 });
 
 function RegisterForm(){
-    /**/
+
+    
 }
 
 $('#user-dropdown li a').on('click', function(e){
