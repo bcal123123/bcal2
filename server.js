@@ -41,7 +41,6 @@ function ResolveApproverSyntax(user, approver){
     if (approver == "::0")
         return user;
 
-    //if (!user.startsWith("soldier"))
     if (user.lastIndexOf("soldier", 0) !== 0)
         return user;
     
@@ -126,11 +125,16 @@ app.get('/tofes/getTofesByApprover/:user', function(req, res) {
 	
 });
 
+app.post('/empty/add/:newempty', function(req, res){
+    var newEmptyName = req.params.newempty;
+    var newEmpty = req.body;
 
-// method:post, url:'/tofes/:type/:userid', data:{ name:'d1', lname:'aviram', sdate:'11/12/13', ndate:'12/14/14', dest:'Thai', pNumber: '123123'}
+    db.empties[newEmptyName] = newEmpty;
+    res.send(200);
+});
+
 app.post('/runtofes/:userid', function(req, res) {
-    console.log('asdf');
-	var user = req.params.userid;	
+	var user = req.params.userid;
 	var type = req.body.type;
 	var data = req.body.data;
 	
@@ -471,34 +475,8 @@ db.empties.hul = {
     ]
 };
 
-db.empties.gun = {
-    modal: "<form id=\"run-form\"><h4>sick</h4><div class=\"row\"><p>טופס נשק למטרות תורנויות</p></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"gun\",data: {}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
-    name: "טופס נשק",
-    image: "/img/gun.jpg",
-    stages: [
-        {
-            "id": "1",
-            "type": "video",
-            "name": "תדרוך",
-            "data": {
-                "link": "https://www.youtube.com/embed/Y_OLslE3bX8"
-            },
-            "done": false,
-            "approver": "::0"
-        },
-
-        {
-            "id": "2",
-            "type": "approve",
-            "name": "אישור רשצ",
-            "done": false,
-            "approver": "::1"
-        }
-    ]
-};
-
 db.empties.sick = {
-    modal: "<form id=\"run-form\"><h4>sick</h4><div class=\"row\"><div class=\"input-field col s6\"><input id=\"date\" type=\"text\" class=\"validate\"><label for=\"date\" class=\"hebrew-fix\">תאריך טיסה</label></div></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"sick\",data: {date: $('#date')[0].value}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
+    modal: "<form id=\"run-form\"><h4>הצהרה</h4><div class=\"row\"><div class=\"input-field col s6\"><input id=\"date\" type=\"text\" class=\"validate\"><label for=\"date\" class=\"hebrew-fix\">תאריך</label></div></div><div class=\"modal-footer center-align modal-footer-container\"><button type=\"submit\" class=\"modal-action modal-close waves-effect waves-light btn\">הרץ טופס</button></div></form><script>$('#run-form').submit(function(ev) {var tofes = {type: \"sick\",data: {date: $('#date')[0].value}};$.post('/runtofes/' + localStorage['user'], tofes, function(data){location.reload();});});</script>",
     name: "הצהרה",
     image: "/img/sick.jpg",
     stages: [
@@ -534,25 +512,5 @@ db.empties.driver = {
         }
     ]
 };
-
-/*var t1 = create('soldier1',  { name:'soldier1', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
-t1.stages[1].done = true;
-t1.stages[2].done = true;
-t1.stages[3].done = true;
-
-var t2 = create('soldier2',  { name:'soldier2', lname:'name', sdate:'11/12/13', edate:'12/14/15', dest:'Thai', pNumber: '123123'},"חול" );
-t2.stages[1].done = true;
-t2.stages[2].done = true;
-t2.stages[3].done = true;
-t2.stages[4].done = true;
-t2.stages[5].done = true;
-t2.stages[6].done = true;
-t2.stages[7].done = true;
-t2.stages[8].done = true;*/
-
-
-//createNewTofesType('hatz', [{type:'input', data: {fields :[{'fieldName':'pNumber'}]}, approver:"{user}"}]);
-
-
 
 app.listen(port);

@@ -249,9 +249,22 @@ $(document).ready(function () {
     /* end of wait to me section */
 });
 
-function RegisterForm(){
+function sendEmpty(){
+    var newemptyjson = $('#area').val();
+    var newemptyname = $('#name').val();
 
-    
+    $.ajax({
+        url: '/empty/add/'+newemptyname,
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        data: newemptyjson,
+        success: function(data){
+            if (data)
+                window.location = '/';
+        }
+    })
 }
 
 $('#user-dropdown li a').on('click', function(e){
@@ -267,5 +280,3 @@ function dissmissTofes(id){
         }
     });
 }
-
-RegisterForm();
